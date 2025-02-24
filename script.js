@@ -18,7 +18,7 @@ const questions = [
   },
   {
     question: "Which is the largest planet in our solar system?",
-    choices: ["Earth", "Jupiter", "Mars"],
+    choices: ["Earth", "Jupiter", "Mars", "Saturn"],
     answer: "Jupiter",
   },
   {
@@ -45,7 +45,7 @@ if (savedProgress) {
   userAnswers = Array(questions.length).fill(null);
 }
 
-// Load score from localStorage
+// Load and display score from localStorage
 const savedScore = localStorage.getItem("score");
 if (savedScore !== null) {
   scoreElement.textContent = `Your score is ${savedScore} out of ${questions.length}.`;
@@ -112,13 +112,6 @@ function calculateScore() {
 
 // Event listener for submit button
 submitButton.addEventListener("click", function () {
-  // Check if all questions have been answered
-  const allAnswered = userAnswers.every((answer) => answer !== null);
-  if (!allAnswered) {
-    alert("Please answer all questions before submitting the quiz.");
-    return;
-  }
-
   const score = calculateScore();
   scoreElement.textContent = `Your score is ${score} out of ${questions.length}.`;
   localStorage.setItem("score", score);
